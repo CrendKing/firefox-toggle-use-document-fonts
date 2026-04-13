@@ -16,6 +16,7 @@ browser.action.onClicked.addListener(async function () {
     const setting = await USE_DOCUMENT_FONTS.get({})
     const newValue = !setting.value
 
-    USE_DOCUMENT_FONTS.set({ value: newValue })
-    updateIcon(newValue)
+    if (await USE_DOCUMENT_FONTS.set({ value: newValue })) {
+        updateIcon(newValue)
+    }
 })
